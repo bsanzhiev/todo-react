@@ -1,0 +1,72 @@
+#root {
+  max-width: 100vw;
+  margin: auto;
+
+  text-align: center;
+  place-items: center;
+}
+
+.todos-container {
+  margin-bottom: 10px !important;
+}
+
+/* Only apply the margin on mobile screens */
+@media screen and (max-width: 768px) {
+  .todo-form-card-hello {
+    padding-bottom: 20px;
+  }
+}
+
+.todo-form-hello {
+  margin-bottom: -20px;
+}
+
+#todo-input-form {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+/* Styles of todo items */
+.card-item-hello .ant-card-body {
+  padding: 0px;
+}
+.list-item {
+  display: flex !important;
+  flex-direction: row;
+  align-self: center !important;
+  width: 100%;
+}
+
+.ant-checkbox-wrapper {
+  align-self: center;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 1em;
+}
+
+.input-item article {
+  width: auto;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.input-item input {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.todo-item-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-self: center;
+  justify-content: flex-end;
+  width: auto;
+}

@@ -1,0 +1,93 @@
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+App
+- TodoContainer
+  - TodoForm
+  - TodoList
+    - TodoItem
+
+
+{/* <List.Item
+      actions={[
+        // eslint-disable-next-line react/jsx-key
+        <Tooltip
+          title={todo.completed ? 'Mark as uncompleted' : 'Mark as completed'}
+        >
+          <Checkbox
+            checked={todo.completed}
+            
+          ></Checkbox>
+        </Tooltip>,
+        // eslint-disable-next-line react/jsx-key
+        <Popconfirm
+          title="Are you sure you want to delete?"
+          onConfirm={() => {
+            removeTodo(todo.id);
+          }}
+        >
+          <Button className="remove-todo-button" type="primary" danger>
+            X
+          </Button>
+        </Popconfirm>,
+      ]}
+      className="list-item"
+      key={todo.id}
+    >
+      <div className="todo-item">
+        <Tag color={todo.completed ? 'cyan' : 'red'} className="todo-tag">
+          {todo.text}
+        </Tag>
+      </div>
+    </List.Item> */}
+      {/* <li>
+        <div>
+          <input type="checkbox" />
+          {todo.text}
+          <button type="button" onClick={() => updateTodo()}>
+            Edit
+          </button>{" "}
+          <button
+            type="button"
+            onClick={() => {
+              removeTodo();
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </li> */}
+
+// TodoForm
+      {/* <div>
+        <input
+          type="text"
+          value={value}
+          required
+          onChange={(event) => setValue(event.target.value)}
+        />
+        <button type="submit" onClick={onSubmit}>
+          Add Todo
+        </button>
+      </div> */}
+
+//      TodoList
+            {/* <ul>
+      {todos.map((todo) => (
+        <TodoItem id={todo.id} text={todo.text} completed={todo.completed} key={todo.id} todo={todo} removeTodo={removeTodo} />
+        ))}
+    </ul> */}
+    

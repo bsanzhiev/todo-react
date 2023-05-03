@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodo, updateTodo } from "../store/todosSlice";
 import PropTypes from "prop-types";
+
 import {
   Popconfirm,
   Button,
@@ -11,43 +14,23 @@ import {
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
-// import { useDispatch } from "react-redux";
-// import { deleteTodo, editTodo } from "../store/localTodosSlice";
-// import { useState } from "react";
-// import TodoForm from "./TodoForm";
-// import { useDeleteTodo } from "../api";
 
-function TodoItem({ todo, removeTodo }) {
+function TodoItem({ text, checked }) {
   const [isEditing, setIsEditing] = useState(false);
   const handleEdit = () => {
     setIsEditing(!isEditing);
+    updateTodo();
   };
-
-  // const deleteTodo = useDeleteTodo();
-  // const handleDelete = () => {
-  //   deleteTodo(todo.id);
-  // };
-
-  // const handleCancel = () => {
-  //   setIsEditing(false);
-  // };
-  // const dispatch = useDispatch();
-  // const removeTodo = () => {
-  //   dispatch(deleteTodo({ id: id }));
-  // };
-  // const updateTodo = () => {
-  //   dispatch(editTodo({ id: id }));
-  // };
 
   return (
     <List.Item>
       <div className="list-item">
-        <Checkbox></Checkbox>
+        <Checkbox checked={checked}></Checkbox>
         <div className="input-item">
           {isEditing ? (
-            <Input value={todo.text}></Input>
+            <Input value={text}></Input>
           ) : (
-            <Typography level={2}>{todo.text}</Typography>
+            <Typography level={2}>{text}</Typography>
           )}
         </div>
 
@@ -60,6 +43,7 @@ function TodoItem({ todo, removeTodo }) {
           <Button
             type="primary"
             danger
+            onClick={deleteTodo()}
             icon={<TrashIcon strokeWidth={2} height={20} width={20} />}
           ></Button>
         </div>
@@ -69,8 +53,8 @@ function TodoItem({ todo, removeTodo }) {
 }
 
 TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
-  removeTodo: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default TodoItem;

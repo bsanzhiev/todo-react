@@ -1,32 +1,20 @@
-import { useEffect, useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Row, Col, Card, Typography } from "antd";
+
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import { fetchTodos } from "../store/todosSlice";
 
 const Title = Typography.Title;
 
 function TodosContainer() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "Learn React",
-      completed: false,
-    },
-  ]);
-
-  const addTodo = (todo) => {
-    setTodos([...todos, todo]);
-  };
-
-  const removeTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("todos", todos);
-  }, [todos]);
+    dispatch(fetchTodos());
+  }, [ dispatch ]);
 
   return (
     <Row
@@ -42,7 +30,7 @@ function TodosContainer() {
         lg={{ span: 20 }}
         xl={{ span: 18 }}
       >
-        <Title level={1}>Todo App Example</Title>
+        <Title level={1}>Todo App Demo</Title>
       </Col>
 
       <Col
@@ -53,7 +41,7 @@ function TodosContainer() {
         xl={{ span: 13 }}
       >
         <Card className="todo-form-card-hello">
-          <TodoForm className="todo-form" addTodo={addTodo} />
+          <TodoForm className="todo-form" />
         </Card>
       </Col>
 
@@ -65,7 +53,7 @@ function TodosContainer() {
         xl={{ span: 13 }}
       >
         <Card className="card-item-hello" title="Todos Lists">
-          <TodoList todos={todos} removeTodo={removeTodo} />
+          <TodoList />
         </Card>
       </Col>
     </Row>

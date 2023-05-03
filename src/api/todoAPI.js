@@ -1,25 +1,26 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://todo-node-dhcf.onrender.com/";
+// const API_URL = "http://localhost:3000/";
 
 const instance = axios.create({
   baseURL: API_URL,
-  timeout: 1000,
 });
 
-export const getTodos = () => {
+export const fetchTodosAPI = () => {
   return instance.get("todos");
 }
 
-export const addTodo = (todo) => {
-  return instance.post("todos", todo);
+export const addTodoAPI = (text) => {
+  console.log('text text', text);
+  return instance.post(text);
 }
 
-export const updateTodo = (todo) => {
+export const updateTodoAPI = (todo) => {
   return instance.put("todos", todo);
 }
 
-export const deleteTodo = (id) => {
+export const deleteTodoAPI = (id) => {
   return instance.delete(`todos/${id}`);
 }
 

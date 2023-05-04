@@ -12,7 +12,6 @@ const TodoForm = () => {
     dispatch(createTodo(name));
     message.success("Todo added!");
   };
-
   const onFinish = () => {
     handleFormSubmit({
       name: form.getFieldValue("name"),

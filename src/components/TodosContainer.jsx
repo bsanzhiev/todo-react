@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos, filterTodos } from "../store/todosSlice";
+import { fetchTodos } from "../store/todosSlice";
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";

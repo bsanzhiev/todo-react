@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
 
-import { List, Spin, message } from "antd";
+import { List, Spin } from "antd";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos.items);

@@ -13,16 +13,17 @@ function TodoList() {
   //   return filteredItems.length > 0 ? filteredItems : todos;
   // };
 
-  const renderedTodos = () => {
-    if (filteredItems.length > 0) {
-      return filteredItems;
-    } else {
-      // message.warning("No matches found!");
-      return todos;
-    }
-  };
+  //call like function()
+  // const renderedTodos = () => {
+  //   if (filteredItems.length > 0) {
+  //     return filteredItems;
+  //   } else {
+  //     // message.warning("No matches found!");
+  //     return todos;
+  //   }
+  // };
 
-  const sortTodos = renderedTodos().slice().sort((a, b) => {
+  const sortTodos = todos.slice().sort((a, b) => {
     const dateA = new Date(a.createTag);
     const dateB = new Date(b.createTag);
     return dateB - dateA;

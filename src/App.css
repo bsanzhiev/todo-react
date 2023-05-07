@@ -29,6 +29,24 @@
 .card-item-hello .ant-card-body {
   padding: 0px;
 }
+
+.checked-style {
+  color: #999;
+  text-decoration: line-through;
+  /* Другие свойства стиля */
+}
+
+.checked-style article {
+  color: #999;
+  text-decoration: line-through;
+  /* Другие свойства стиля */
+}
+.unchecked-style {
+  background-color: #fff;
+  color: #333;
+  /* Другие свойства стиля */
+}
+
 .list-item {
   display: flex !important;
   flex-direction: row;
@@ -60,6 +78,11 @@
   padding-bottom: 0px;
   font-size: 1.2em;
   font-weight: 400;
+}
+
+.form-item-hello {
+  margin-bottom: 0px;
+  width: 100%;
 }
 
 .todo-item-buttons {

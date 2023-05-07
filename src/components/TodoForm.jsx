@@ -4,6 +4,8 @@ import { createTodo } from "../store/todosSlice";
 import { Form, Row, Col, Button, Input, message } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 
+const onChange = (e) => console.log(e.target.value);
+
 const TodoForm = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -34,7 +36,12 @@ const TodoForm = () => {
             name={"name"}
             rules={[{ required: true, message: "This field is required" }]}
           >
-            <Input type="text" placeholder="What needs to be done?" />
+            <Input
+              onChange={onChange}
+              type="text"
+              placeholder="Юу хийх шаардлагатай вэ?"
+              maxLength={60}
+            />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={5}>

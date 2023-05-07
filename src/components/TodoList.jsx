@@ -8,7 +8,11 @@ function TodoList() {
   const status = useSelector((state) => state.todos.status);
   const error = useSelector((state) => state.todos.error);
 
-  // const reverseTodos = todos.slice().reverse();
+  const sortTodos = todos.slice().sort((a, b) => {
+    const dateA = new Date(a.createTag);
+    const dateB = new Date(b.createTag);
+    return dateB - dateA;
+  });
 
   if (status === "loading") {
     return (
@@ -29,9 +33,9 @@ function TodoList() {
       className="todo-list"
       size="large"
       locale={{
-        emptyText: "You don't have any todos yet. Enjoy your day!",
+        emptyText: "Танд хараахан хийх зүйл алга. Өдрийг сайхан өнгөрүүлээрэй!",
       }}
-      dataSource={todos}
+      dataSource={sortTodos}
       renderItem={(todo) => <TodoItem {...todo} />}
     />
   );

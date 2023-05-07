@@ -1,11 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  addTodoAPI,
-  deleteTodoAPI,
-  fetchTodosAPI,
-  updateTodoAPI,
-} from "../api/todoAPI";
 
 const BASE_URL = "http://localhost:3000/";
 // const BASE_URL = "https://todo-node-dhcf.onrender.com/";
@@ -22,8 +16,8 @@ export const createTodo = createAsyncThunk("todos/createTodo", async (text) => {
 
 export const updateTodo = createAsyncThunk(
   "todos/updateTodos",
-  async ({ id, text }) => {
-    const response = await updateTodoAPI(`/todos/${id}`, { text });
+  async ({ id, text, checked }) => {
+    const response = await axios.put(`${BASE_URL}todos/${id}`, { text, checked });
     return response.data;
   }
 );
@@ -74,12 +68,15 @@ const todosSlice = createSlice({
         state.status = "loading";
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
+        const updatedTodo = action.payload;
+        const updatedTodos = state.items.map((todo) => {
+          if (todo._id === updatedTodo._id) {
+            return updatedTodo;
+          }
+          return todo;
+        });
+        state.items = updatedTodos;
         state.status = "succeeded";
-        const { id, text } = action.payload;
-        const existingTodo = state.todos.find((todo) => todo.id === id);
-        if (existingTodo) {
-          existingTodo.text = text;
-        }
       })
       .addCase(updateTodo.rejected, (state, action) => {
         state.status = "failed";
@@ -91,10 +88,9 @@ const todosSlice = createSlice({
         state.status = "loading";
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         const todoId = action.payload;
         state.items = state.items.filter((item) => item._id !== todoId);
-        console.log(todoId,"todoId");
       })
       .addCase(deleteTodo.rejected, (state, action) => {
         state.status = "failed";

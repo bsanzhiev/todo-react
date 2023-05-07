@@ -12,7 +12,6 @@ export const fetchTodosAPI = () => {
 }
 
 export const addTodoAPI = (text) => {
-  console.log('text text', text);
   return instance.post(text);
 }
 

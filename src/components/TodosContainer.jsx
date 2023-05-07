@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchTodos } from "../store/todosSlice";
 
 import TodoList from "./TodoList";
@@ -10,17 +10,9 @@ const Title = Typography.Title;
 
 function TodosContainer() {
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.todos.status);
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if(status === "succeeded") {
-  //     dispatch(fetchTodos());
-  //   }
-  // }, [status, dispatch]);
-
 
   return (
     <Row

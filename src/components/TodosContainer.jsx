@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { fetchTodos } from "../store/todosSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodos, filterTodos } from "../store/todosSlice";
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
@@ -9,10 +9,16 @@ import { Row, Col, Card, Typography } from "antd";
 const Title = Typography.Title;
 
 function TodosContainer() {
+  const filteredItems = useSelector((state) => state.todos.filteredItems);
+  const todos = useSelector((state) => state.todos.items);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
+
+  const todosTitle = () => {
+    return filteredItems.length == todos.length ? "Todos List" : "Filtred Todos List";
+  };
 
   return (
     <Row
@@ -50,7 +56,7 @@ function TodosContainer() {
         lg={{ span: 16 }}
         xl={{ span: 13 }}
       >
-        <Card className="card-item-hello" title="Todos Lists">
+        <Card className="card-item-hello" title={todosTitle()}>
           <TodoList />
         </Card>
       </Col>

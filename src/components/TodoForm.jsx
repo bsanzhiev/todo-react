@@ -8,13 +8,14 @@ const TodoForm = () => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
-  const handleFormSubmit = (name) => {
-    dispatch(createTodo(name));
+  const handleFormSubmit = (text) => {
+    dispatch(createTodo(text));
     message.success("Todo added!");
   };
   const onFinish = () => {
+    // здесь формируется объект с текстом задачи
     handleFormSubmit({
-      name: form.getFieldValue("name"),
+      text: form.getFieldValue("name"),
     });
     form.resetFields();
   };
@@ -33,7 +34,7 @@ const TodoForm = () => {
             name={"name"}
             rules={[{ required: true, message: "This field is required" }]}
           >
-            <Input placeholder="What needs to be done?" />
+            <Input type="text" placeholder="What needs to be done?" />
           </Form.Item>
         </Col>
         <Col xs={24} sm={24} md={7} lg={5} xl={5}>

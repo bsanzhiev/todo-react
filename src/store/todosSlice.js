@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import {
   addTodoAPI,
   deleteTodoAPI,
@@ -6,13 +7,16 @@ import {
   updateTodoAPI,
 } from "../api/todoAPI";
 
+const BASE_URL = "http://localhost:3000/";
+// const BASE_URL = "https://todo-node-dhcf.onrender.com/";
+
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
-  const response = await fetchTodosAPI();
+  const response = await axios.get(`${BASE_URL}todos`);
   return response.data;
 });
 
 export const createTodo = createAsyncThunk("todos/createTodo", async (text) => {
-  const response = await (addTodoAPI, text);
+  const response = await axios.post(`${BASE_URL}todos/`, text);
   return response.data;
 });
 
@@ -24,16 +28,16 @@ export const updateTodo = createAsyncThunk(
   }
 );
 
-export const deleteTodo = createAsyncThunk("todos/deleteTodos", async (id) => {
-  await deleteTodoAPI(`/todos/${id}`);
-  return id;
+export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (id) => {
+  const response = await axios.delete(`${BASE_URL}todos/${id}`);
+  return response.data;
 });
 
 const todosSlice = createSlice({
   name: "todos",
   initialState: {
     items: [],
-    status: "idle",
+    status: "succeeded",
     error: null,
   },
   reducers: {},
@@ -70,6 +74,7 @@ const todosSlice = createSlice({
         state.status = "loading";
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
+        state.status = "succeeded";
         const { id, text } = action.payload;
         const existingTodo = state.todos.find((todo) => todo.id === id);
         if (existingTodo) {
@@ -86,11 +91,9 @@ const todosSlice = createSlice({
         state.status = "loading";
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        const { id } = action.payload;
-        const index = state.todos.findIndex((todo) => todo.id === id);
-        if (index !== -1) {
-          state.items.splice(index, 1);
-        }
+        state.status = 'succeeded';
+        // const todoId = action.payload;
+        // state.items = state.items.filter((item) => item._id !== todoId);
       })
       .addCase(deleteTodo.rejected, (state, action) => {
         state.status = "failed";

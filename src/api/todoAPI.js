@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://todo-node-dhcf.onrender.com/";
-// const API_URL = "http://localhost:3000/";
+// const API_URL = "https://todo-node-dhcf.onrender.com/";
+const API_URL = "http://localhost:3000/";
 
 const instance = axios.create({
   baseURL: API_URL,
@@ -23,5 +23,3 @@ export const updateTodoAPI = (todo) => {
 export const deleteTodoAPI = (id) => {
   return instance.delete(`todos/${id}`);
 }
-
-// Path: src/components/TodoList.js

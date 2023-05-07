@@ -1,20 +1,26 @@
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { Row, Col, Card, Typography } from "antd";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodos } from "../store/todosSlice";
 
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
-import { fetchTodos } from "../store/todosSlice";
+import { useEffect } from "react";
 
+import { Row, Col, Card, Typography } from "antd";
 const Title = Typography.Title;
 
 function TodosContainer() {
   const dispatch = useDispatch();
-
+  const status = useSelector((state) => state.todos.status);
   useEffect(() => {
     dispatch(fetchTodos());
-  }, [ dispatch ]);
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if(status === "succeeded") {
+  //     dispatch(fetchTodos());
+  //   }
+  // }, [status, dispatch]);
+
 
   return (
     <Row

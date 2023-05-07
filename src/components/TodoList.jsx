@@ -7,9 +7,9 @@ function TodoList() {
   const todos = useSelector((state) => state.todos.items);
   const status = useSelector((state) => state.todos.status);
   const error = useSelector((state) => state.todos.error);
-  
+
   // const reverseTodos = todos.slice().reverse();
-  
+
   if (status === "loading") {
     return (
       <div>
@@ -32,9 +32,7 @@ function TodoList() {
         emptyText: "You don't have any todos yet. Enjoy your day!",
       }}
       dataSource={todos}
-      renderItem={(todo) => (
-        <TodoItem {...todo} />
-      )}
+      renderItem={(todo) => <TodoItem {...todo} />}
     />
   );
 }

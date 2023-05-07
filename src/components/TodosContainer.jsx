@@ -13,11 +13,6 @@ function TodosContainer() {
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
-  
-  // useEffect(() => {
-  //   dispatch(filterTodos());
-  // }, [dispatch]);
-
 
   return (
     <Row

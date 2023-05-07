@@ -92,8 +92,9 @@ const todosSlice = createSlice({
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // const todoId = action.payload;
-        // state.items = state.items.filter((item) => item._id !== todoId);
+        const todoId = action.payload;
+        state.items = state.items.filter((item) => item._id !== todoId);
+        console.log(todoId,"todoId");
       })
       .addCase(deleteTodo.rejected, (state, action) => {
         state.status = "failed";

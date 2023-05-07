@@ -16,9 +16,9 @@ function TodosContainer() {
     dispatch(fetchTodos());
   }, [dispatch]);
 
-  const todosTitle = () => {
-    return filteredItems.length == todos.length ? "Todos List" : "Filtred Todos List";
-  };
+  // const todosTitle = () => {
+  //   return filteredItems.length == todos.length ? "Todos List" : "Filtred Todos List";
+  // };
 
   return (
     <Row
@@ -56,7 +56,7 @@ function TodosContainer() {
         lg={{ span: 16 }}
         xl={{ span: 13 }}
       >
-        <Card className="card-item-hello" title={todosTitle()}>
+        <Card className="card-item-hello" title="Todos List">
           <TodoList />
         </Card>
       </Col>

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/";
-// const BASE_URL = "https://todo-node-dhcf.onrender.com/";
+// const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://todo-node-dhcf.onrender.com/";
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const response = await axios.get(`${BASE_URL}todos`);

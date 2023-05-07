@@ -33,18 +33,11 @@
 .checked-style {
   color: #999;
   text-decoration: line-through;
-  /* Другие свойства стиля */
 }
 
-.checked-style article {
-  color: #999;
-  text-decoration: line-through;
-  /* Другие свойства стиля */
-}
 .unchecked-style {
-  background-color: #fff;
+  background-color: #ffffff;
   color: #333;
-  /* Другие свойства стиля */
 }
 
 .list-item {

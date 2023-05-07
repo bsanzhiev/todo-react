@@ -71,54 +71,57 @@ function TodoItem({ _id, text, checked }) {
   };
 
   return (
-    <div className={className}>
-      <List.Item>
-        <Checkbox defaultChecked={checked} onChange={onChange}></Checkbox>
-        <div className="input-item">
-          {isEditing ? (
-            <Form className="list-item" form={form}>
-              <Form.Item className="form-item-hello" name={"item-input"}>
-                <Input type="text" defaultValue={text} maxLength={68}></Input>
-              </Form.Item>
-            </Form>
-          ) : (
-            <Typography level={2}>{text}</Typography>
-          )}
-        </div>
-        <div className="todo-item-buttons">
-          {isEditing ? (
-            <Button
-              type="primary"
-              icon={<CheckIcon strokeWidth={2} height={20} width={20} />}
-              onClick={() => {
-                handleSaveMode();
-              }}
-            ></Button>
-          ) : (
-            <Button
-              type="primary"
-              icon={<PencilIcon strokeWidth={2} height={20} width={20} />}
-              onClick={() => {
-                handleEditMode();
-              }}
-            ></Button>
-          )}
-          <Popconfirm
-            title="Are you sure you want to delete?"
-            onConfirm={() => {
-              handleRemove();
-              message.success("Todo deleted successfully!");
+    <List.Item>
+      <Checkbox defaultChecked={checked} onChange={onChange}></Checkbox>
+      <div className="input-item">
+        {isEditing ? (
+          <Form className="list-item" form={form}>
+            <Form.Item className="form-item-hello" name={"item-input"}>
+              <Input
+                
+                type="text"
+                defaultValue={text}
+                maxLength={68}
+              ></Input>
+            </Form.Item>
+          </Form>
+        ) : (
+          <Typography className={className} level={2}>{text}</Typography>
+        )}
+      </div>
+      <div className="todo-item-buttons">
+        {isEditing ? (
+          <Button
+            type="primary"
+            icon={<CheckIcon strokeWidth={2} height={20} width={20} />}
+            onClick={() => {
+              handleSaveMode();
             }}
-          >
-            <Button
-              type="primary"
-              danger
-              icon={<TrashIcon strokeWidth={2} height={20} width={20} />}
-            ></Button>
-          </Popconfirm>
-        </div>
-      </List.Item>
-    </div>
+          ></Button>
+        ) : (
+          <Button
+            type="primary"
+            icon={<PencilIcon strokeWidth={2} height={20} width={20} />}
+            onClick={() => {
+              handleEditMode();
+            }}
+          ></Button>
+        )}
+        <Popconfirm
+          title="Are you sure you want to delete?"
+          onConfirm={() => {
+            handleRemove();
+            message.success("Todo deleted successfully!");
+          }}
+        >
+          <Button
+            type="primary"
+            danger
+            icon={<TrashIcon strokeWidth={2} height={20} width={20} />}
+          ></Button>
+        </Popconfirm>
+      </div>
+    </List.Item>
   );
 }
 

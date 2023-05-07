@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
-import { createTodo } from "../store/todosSlice";
+import { createTodo, filterTodos } from "../store/todosSlice";
 
 import { Form, Row, Col, Button, Input, message } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 
-const onChange = (e) => console.log(e.target.value);
+
+
+// const onChange = (e) => console.log(e.target.value);
 
 const TodoForm = () => {
   const [form] = Form.useForm();
@@ -22,6 +24,15 @@ const TodoForm = () => {
     form.resetFields();
   };
 
+  const handleFilter = () => {
+    // const value = e.target.value.toLowerCase();
+    // const filter = todos.filter((todo) => {
+    //   return todo.text.toLowerCase().includes(value);
+    // });
+    dispatch(filterTodos(form.getFieldValue("name")));
+    // form.resetFields();
+  };
+
   return (
     <Form
       form={form}
@@ -37,7 +48,7 @@ const TodoForm = () => {
             rules={[{ required: true, message: "This field is required" }]}
           >
             <Input
-              onChange={onChange}
+              onChange={handleFilter}
               type="text"
               placeholder="Юу хийх шаардлагатай вэ?"
               maxLength={60}

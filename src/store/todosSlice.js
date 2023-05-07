@@ -33,8 +33,18 @@ const todosSlice = createSlice({
     items: [],
     status: "succeeded",
     error: null,
+    searchTerm: "",
+    filteredItems: [],
   },
-  reducers: {},
+  reducers: {
+    filterTodos: (state, action) => {
+      const searchTerm = action.payload.toLowerCase();
+      state.searchTerm = searchTerm;
+      state.filteredItems = state.items.filter((task) =>
+        task.text.toLowerCase().includes(searchTerm)
+      );
+    }
+  },
   extraReducers: (builder) => {
     builder
       // fetchTodos
@@ -44,6 +54,7 @@ const todosSlice = createSlice({
       .addCase(fetchTodos.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.items = action.payload;
+        state.filteredItems = action.payload;
       })
       .addCase(fetchTodos.rejected, (state, action) => {
         state.status = "failed";
@@ -99,4 +110,5 @@ const todosSlice = createSlice({
   },
 });
 
+export const { filterTodos } = todosSlice.actions;
 export default todosSlice.reducer;

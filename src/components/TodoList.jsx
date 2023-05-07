@@ -5,6 +5,7 @@ import { List, Spin } from "antd";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos.items);
+  // const filteredItems = useSelector((state) => state.todos.filteredItems);
   const status = useSelector((state) => state.todos.status);
   const error = useSelector((state) => state.todos.error);
 
